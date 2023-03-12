@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "886653924429",
+    "project_id": "finnext-9073b",
+    "storage_bucket": "finnext-9073b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886653924429:android:b6513b7bee647c429e1804",
+        "android_client_info": {
+          "package_name": "com.example.finnext"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886653924429-hrl9m8gmldblrlkr42g8f94cuk2dpeq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_m6X4gyMxy9wn9T4rrTvYjKR6dcS24oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886653924429-hrl9m8gmldblrlkr42g8f94cuk2dpeq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
