@@ -71,17 +71,17 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                 registerTextView.setOnClickListener(new View.OnClickListener() {
-                   public void onClick(View view) {
-                        @Override
+                    @Override
+                    public void onClick(View view) {
+
                                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                     }
                 });
 
-                            @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 // ...
                             }
-                        });
+                        };
 
 
                 @Override
