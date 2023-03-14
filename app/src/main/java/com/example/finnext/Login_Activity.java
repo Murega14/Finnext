@@ -1,5 +1,8 @@
 package com.example.finnext;
 
+import static android.os.Build.VERSION_CODES.R;
+
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.LoginActivity);
+        setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
 
@@ -46,15 +49,18 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                    return;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                    if (email.isEmpty() || password.isEmpty()) {
+                        Toast.makeText(LoginActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
 
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
-                            private void handleSignInResult(Task<AuthResult> task) {
+                                // Remove "private" from the method declaration
+                            void handleSignInResult(Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // User signed in successfully
                                     FirebaseAuth mAuth = null;
@@ -67,11 +73,14 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
 
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            }
-
                             @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // ...
+                            }
+                        });
+
+
+                @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = auth.getCurrentUser();
@@ -89,8 +98,6 @@ public class LoginActivity extends AppCompatActivity {
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class))
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
-
-            ;
-        }
+        });
