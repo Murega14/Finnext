@@ -59,19 +59,23 @@ public class LoginActivity extends AppCompatActivity {
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
-                                // Remove "private" from the method declaration
-                            void handleSignInResult(Task<AuthResult> task) {
+                            public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // User signed in successfully
-                                    FirebaseAuth mAuth = null;
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    // TODO: Update UI with user information
+                                    FirebaseUser user = auth.getCurrentUser();
+                                    Toast.makeText(LoginActivity.this, "Logged in as " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                                    finish();
                                 } else {
-                                    // Sign in failed, display a message to the user
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
+                        });
+                registerTextView.setOnClickListener(new View.OnClickListener() {
+                   public void onClick(View view) {
+                        @Override
+                                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                    }
+                });
 
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -92,12 +96,5 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
-            }
-        });
-
-        registerTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });

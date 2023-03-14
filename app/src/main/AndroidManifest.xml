@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Finnext"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login_Activity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Finnext.NoActionBar">
